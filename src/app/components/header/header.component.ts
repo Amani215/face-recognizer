@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-header',
@@ -7,13 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   title: string = 'Face Recognizer';
-  
-  constructor() { }
+  imageUrl:string = '';
+
+  constructor(private data: DataService) { }
 
   ngOnInit(): void {
   }
 
   addBtn(){
     console.log("Add face");
+  }
+
+  DetectFaceExtract(imageUrl:string){
+    this.data.DetectFaceExtract(imageUrl);
   }
 }

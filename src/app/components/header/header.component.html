@@ -1,4 +1,5 @@
 <header>
     <h1>{{title}}</h1>
-    <app-button text="Add" color="Red" (btnClick)="addBtn()"></app-button>
+    <input type="text" [ngModel]="imageUrl"/>
+    <app-button text="Add" color="Red" (btnClick)="DetectFaceExtract(imageUrl)"></app-button>
 </header>
