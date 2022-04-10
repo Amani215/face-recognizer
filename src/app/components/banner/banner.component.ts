@@ -1,3 +1,7 @@
+//TODO
+//make banner and card children of same parent
+//output url to parent and input it from parent to card
+
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 
@@ -11,10 +15,10 @@ export class BannerComponent implements OnInit {
 
   constructor(private data: DataService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   DetectFaceExtract(imageUrl:string){
-    this.data.DetectFaceExtract(imageUrl);
+    this.imageUrl = '';
+    //this.data.DetectFaceExtract(this.imageUrl);
   }
 }
