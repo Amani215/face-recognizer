@@ -1,0 +1,32 @@
+.banner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 500px) {
+    .banner {
+      flex-direction: column;
+    }
+
+    input[type=text]{
+        margin: auto;
+    }
+}
+
+input[type=text]{
+    margin-right: 10px;
+    padding: 6px 10px;
+    border: 0;
+    /*border-bottom: 1px solid #000;*/
+    border-radius:10px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    width:100%;
+
+    font-family:inherit;
+}
+
+input[type=text]:hover{
+    border: 1px solid #aaa;
+}

@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders, HttpRequest, HttpParamsOptions } from '@angula
 import { Injectable } from '@angular/core';
 import { apiKey } from './api.key';
 import { map } from 'rxjs/operators';
-import { v4 as uuid } from 'uuid';
 
 declare function require(name:string):any;
 const msRest = require("@azure/ms-rest-js");
@@ -32,7 +31,6 @@ export class DataService {
     console.log();
 
     const image_base_url = "https://csdx.blob.core.windows.net/resources/Face/Images/";
-    const person_group_id = uuid();
 
     // Create a list of images
     const image_file_names = [

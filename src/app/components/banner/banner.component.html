@@ -1,0 +1,7 @@
+<div class="banner">
+    <input type="text" 
+           [ngModel]="imageUrl"
+           placeholder="Enter your image url here..."/>
+    <app-button text="Add" color="Red" (btnClick)="DetectFaceExtract(imageUrl)"></app-button>
+</div>
+

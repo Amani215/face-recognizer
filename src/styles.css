@@ -24,7 +24,7 @@ body {
   background: #000;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 7px 20px;
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
@@ -38,7 +38,9 @@ body {
 .btn:active {
   transform: scale(0.98);
 }
-
+.btn:hover{
+  filter: brightness(0.9);
+}
 .btn-block {
   display: block;
   width: 100%;
