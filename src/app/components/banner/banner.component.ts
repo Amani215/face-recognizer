@@ -14,7 +14,10 @@ export class BannerComponent implements OnInit {
   ngOnInit(): void {}
 
   DetectFaceExtract(imageUrl:string){
-    this.imageUrl = '';
-    //this.data.DetectFaceExtract(this.imageUrl);
+    if(imageUrl!=''){
+      this.data.imageUrlChange(this.imageUrl);
+      this.imageUrl = '';
+      this.data.DetectFaceExtract(this.imageUrl);
+    }
   }
 }

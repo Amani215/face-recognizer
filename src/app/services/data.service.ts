@@ -17,7 +17,7 @@ export class DataService {
     
     constructor(private http: HttpClient) { }
 
-    userNameChange(data: string) {
+    imageUrlChange(data: string) {
         this.execChange.next(data);
     }
 
@@ -26,6 +26,8 @@ export class DataService {
         console.log();
 
         const image_base_url: string = this.execChange.getValue();
+
+        /*
         // Create a list of images
         const image_file_names = [
             "detection1.jpg",    // single female with glasses
@@ -130,6 +132,6 @@ export class DataService {
                 console.log("QualityForRecognition: " + face.faceAttributes.qualityForRecognition)
                 console.log();
             });
-        }));
+        }));*/
 }
 }
