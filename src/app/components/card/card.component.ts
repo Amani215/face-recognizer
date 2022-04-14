@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-card',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
+  imageUrl: string = '';
 
-  constructor() { }
+  constructor(data: DataService) { 
+    data.execChange.subscribe((value)=>{
+      this.imageUrl = value;
+    })
+  }
 
   ngOnInit(): void {
   }
