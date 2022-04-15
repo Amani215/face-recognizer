@@ -17,7 +17,6 @@ export class BannerComponent implements OnInit {
     if(imageUrl!=''){
       this.data.imageUrlChange(this.imageUrl);
       this.imageUrl = '';
-      this.data.DetectFaceExtract(this.imageUrl);
     }
   }
 }

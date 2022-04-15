@@ -10,9 +10,11 @@ export class CardComponent implements OnInit {
   imageUrl: string = '';
 
   constructor(data: DataService) { 
-    data.execChange.subscribe((value)=>{
+    data.execChangeURL.subscribe((value)=>{
       this.imageUrl = value;
     })
+
+    //data.DetectFaceExtract(this.imageUrl);
   }
 
   ngOnInit(): void {

@@ -8,7 +8,9 @@ import { ButtonComponent } from './components/button/button.component';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { BannerComponent } from './components/banner/banner.component';
-import { CardComponent } from './components/card/card.component'
+import { CardComponent } from './components/card/card.component';
+import { FacesComponent } from './components/faces/faces.component';
+import { FaceItemComponent } from './components/face-item/face-item.component'
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { CardComponent } from './components/card/card.component'
     HeaderComponent,
     ButtonComponent,
     BannerComponent,
-    CardComponent
+    CardComponent,
+    FacesComponent,
+    FaceItemComponent
   ],
   imports: [
     BrowserModule,
