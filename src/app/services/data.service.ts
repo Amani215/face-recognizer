@@ -11,9 +11,10 @@ const endpoint:string = 'https://faceapi-clientside.cognitiveservices.azure.com/
 const credentials = new msRest.ApiKeyCredentials({ inHeader: { 'Ocp-Apim-Subscription-Key': apiKey } });
 const client = new Face.FaceClient(credentials, endpoint);
 
+const testUrl: string = "https://csdx.blob.core.windows.net/resources/Face/Images/detection6.jpg";
 @Injectable({providedIn: 'root'})
 export class DataService {
-    execChange: BehaviorSubject<string> = new BehaviorSubject<string>("https://csdx.blob.core.windows.net/resources/Face/Images/");
+    execChange: BehaviorSubject<string> = new BehaviorSubject<string>(testUrl);
     
     constructor(private http: HttpClient) { }
 
@@ -27,28 +28,15 @@ export class DataService {
 
         const image_base_url: string = this.execChange.getValue();
 
-        /*
-        // Create a list of images
-        const image_file_names = [
-            "detection1.jpg",    // single female with glasses
-            // "detection2.jpg", // (optional: single man)
-            // "detection3.jpg", // (optional: single male construction worker)
-            // "detection4.jpg", // (optional: 3 people at cafe, 1 is blurred)
-            "detection5.jpg",    // family, woman child man
-            "detection6.jpg"     // elderly couple, male female
-        ];
-
-    // NOTE await does not work properly in for, forEach, and while loops. Use Array.map and Promise.all instead.
-        await Promise.all (image_file_names.map (async function (image_file_name) {
-            let detected_faces = await client.face.detectWithUrl(image_base_url + image_file_name,
-                {
-                    returnFaceAttributes: ["Accessories","Age","Blur","Emotion","Exposure","FacialHair","Glasses","Hair","HeadPose","Makeup","Noise","Occlusion","Smile","QualityForRecognition"],
-                    // We specify detection model 1 because we are retrieving attributes.
-                    detectionModel: "detection_01",
-                    recognitionModel: "recognition_03"
-                });
-            console.log (detected_faces.length + " face(s) detected from image " + image_file_name + ".");
-            console.log("Face attributes for face(s) in " + image_file_name + ":");
+        let detected_faces = await client.face.detectWithUrl(image_base_url,
+            {
+                returnFaceAttributes: ["Accessories","Age","Blur","Emotion","Exposure","FacialHair","Glasses","Hair","HeadPose","Makeup","Noise","Occlusion","Smile","QualityForRecognition"],
+                // We specify detection model 1 because we are retrieving attributes.
+                detectionModel: "detection_01",
+                recognitionModel: "recognition_03"
+            });
+        console.log (detected_faces.length + " face(s) detected from image .");
+        console.log("Face attributes for face(s) in the image:");
 
     // Parse and print all attributes of each detected face.
             detected_faces.forEach (async (face:any) => {
@@ -132,6 +120,6 @@ export class DataService {
                 console.log("QualityForRecognition: " + face.faceAttributes.qualityForRecognition)
                 console.log();
             });
-        }));*/
+        ;
 }
 }
