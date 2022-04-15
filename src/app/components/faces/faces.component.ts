@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FACES} from '../../mock-faces'
+import { DataService } from 'src/app/services/data.service';
 import {Face} from '../../Face'
 
 @Component({
@@ -8,11 +8,17 @@ import {Face} from '../../Face'
   styleUrls: ['./faces.component.css']
 })
 export class FacesComponent implements OnInit {
-  faces: Face[] = FACES;
+  faces: Face[] = [];
   
-  constructor() { }
+  constructor(private data: DataService) {
+    //this.data.DetectFaceExtract(this.data.execChangeURL.getValue());
+    this.data.execChangeFaces.subscribe((value)=>{
+      this.faces = value;
+    })
+   }
 
   ngOnInit(): void {
+    
   }
 
 }

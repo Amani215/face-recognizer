@@ -1,27 +1,36 @@
 import { HttpClient, HttpHeaders, HttpRequest, HttpParamsOptions } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { apiKey } from './api.key';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import {FACES} from '../mock-faces'
+import {Face} from '../Face'
+//import { Face } from '@azure/cognitiveservices-face';
 
 declare function require(name:string):any;
 const msRest = require("@azure/ms-rest-js");
-const Face = require("@azure/cognitiveservices-face");
+const AzureFace = require("@azure/cognitiveservices-face");
 
 const endpoint:string = 'https://faceapi-clientside.cognitiveservices.azure.com/face/v1.0/detect?returnFaceAttributes=age.gender';
 const credentials = new msRest.ApiKeyCredentials({ inHeader: { 'Ocp-Apim-Subscription-Key': apiKey } });
-const client = new Face.FaceClient(credentials, endpoint);
+const client = new AzureFace.FaceClient(credentials, endpoint);
 
 const testUrl: string = "https://csdx.blob.core.windows.net/resources/Face/Images/detection6.jpg";
 @Injectable({providedIn: 'root'})
 export class DataService {
     execChangeURL: BehaviorSubject<string> = new BehaviorSubject<string>(testUrl);
+    execChangeFaces: BehaviorSubject<Face[]> = new BehaviorSubject<Face[]>([]);
 
-    constructor(private http: HttpClient) { }
+    constructor() {}
 
     imageUrlChange(data: string) {
         this.execChangeURL.next(data);
     }
 
+    changeFaces(data: Face[]){
+        this.execChangeFaces.next(data);
+    }
+
+    faces: Face[] = [];
     async DetectFaceExtract(imageUrl: string) {
         console.log("========DETECT FACES========");
         console.log();
@@ -40,6 +49,11 @@ export class DataService {
 
         // Parse and print all attributes of each detected face.
         detected_faces.forEach (async (face:any) => {
+            
+            const newFace: Face = {id: 1, age: 2}
+            this.faces.push(newFace);
+            this.changeFaces(this.faces);
+
             // Get the bounding box of the face
             console.log("Bounding box:\n  Left: " + face.faceRectangle.left + "\n  Top: " + face.faceRectangle.top + "\n  Width: " + face.faceRectangle.width + "\n  Height: " + face.faceRectangle.height);
 
@@ -119,7 +133,6 @@ export class DataService {
 
             console.log("QualityForRecognition: " + face.faceAttributes.qualityForRecognition)
             console.log();
-            });
-        ;
-}
+        });
+    }
 }
