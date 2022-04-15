@@ -1,10 +1,7 @@
-import { HttpClient, HttpHeaders, HttpRequest, HttpParamsOptions } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { apiKey } from './api.key';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import {FACES} from '../mock-faces'
+import { BehaviorSubject} from 'rxjs';
 import {Face} from '../Face'
-//import { Face } from '@azure/cognitiveservices-face';
 
 declare function require(name:string):any;
 const msRest = require("@azure/ms-rest-js");
@@ -47,13 +44,10 @@ export class DataService {
         console.log (detected_faces.length + " face(s) detected from image .");
         console.log("Face attributes for face(s) in the image:");
 
+        let counter: number = 1;
+        this.faces = [];
         // Parse and print all attributes of each detected face.
         detected_faces.forEach (async (face:any) => {
-            
-            const newFace: Face = {id: 1, age: 2}
-            this.faces.push(newFace);
-            this.changeFaces(this.faces);
-
             // Get the bounding box of the face
             console.log("Bounding box:\n  Left: " + face.faceRectangle.left + "\n  Top: " + face.faceRectangle.top + "\n  Width: " + face.faceRectangle.width + "\n  Height: " + face.faceRectangle.height);
 
@@ -82,9 +76,11 @@ export class DataService {
             if (face.faceAttributes.emotion.sadness > emotion_threshold) { emotions +=  "sadness, "; }
             if (face.faceAttributes.emotion.surprise > emotion_threshold) { emotions +=  "surprise, "; }
             if (emotions.length > 0) {
+                emotions = emotions.slice (0, -2);
                 console.log ("Emotions: " + emotions.slice (0, -2));
             }
             else {
+                emotions = "No emotions detected.";
                 console.log ("No emotions detected.");
             }
             
@@ -133,6 +129,14 @@ export class DataService {
 
             console.log("QualityForRecognition: " + face.faceAttributes.qualityForRecognition)
             console.log();
+
+            const newFace: Face = {id: counter, 
+                                   age: face.faceAttributes.age,
+                                   emotion: emotions}
+            this.faces.push(newFace);
+            this.changeFaces(this.faces);
+
+            counter++;
         });
     }
 }

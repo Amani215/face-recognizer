@@ -1,4 +1,5 @@
 export interface Face{
     id?: number,
-    age: number
+    age: number,
+    emotion: string
 }

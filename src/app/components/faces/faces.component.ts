@@ -18,7 +18,7 @@ export class FacesComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    
+    this.data.DetectFaceExtract(this.data.execChangeURL.getValue());
   }
 
 }
