@@ -16,7 +16,8 @@ export class BannerComponent implements OnInit {
   DetectFaceExtract(imageUrl:string){
     if(this.imageUrl!=''){
       this.data.imageUrlChange(this.imageUrl);
-      this.data.DetectFaceExtract(this.imageUrl);
+      //this.data.DetectFaceExtract(this.imageUrl); //this is for face identification
+      //this.data.IdentifyInPersonGroup();          //this is for face recognition
       this.imageUrl = '';
     }
   }

@@ -11,14 +11,13 @@ export class FacesComponent implements OnInit {
   faces: Face[] = [];
   
   constructor(private data: DataService) {
-    //this.data.DetectFaceExtract(this.data.execChangeURL.getValue());
     this.data.execChangeFaces.subscribe((value)=>{
       this.faces = value;
     })
    }
 
   ngOnInit(): void {
-    this.data.DetectFaceExtract(this.data.execChangeURL.getValue());
+    //this.data.DetectFaceExtract(this.data.execChangeURL.getValue());
   }
 
 }

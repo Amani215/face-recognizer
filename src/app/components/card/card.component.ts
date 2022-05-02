@@ -1,3 +1,7 @@
+//TODO
+//Add face recognition
+//Remove face detection(?) because it has to recognize the faces
+
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 
